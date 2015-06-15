@@ -24,7 +24,7 @@ kernel:
 	$(COMPILER)-gcc -c $(KERNEL_DIR)kernel.c -o $(BUILD_DIR)kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 linker: boot kernel
-	i686-elf-gcc -T $(SRC_DIR)linker.ld -o $(BUILD_DIR)$(OSNAME).bin -ffreestanding -O2 -nostdlib \
+	$(COMPILER)-gcc -T $(SRC_DIR)linker.ld -o $(BUILD_DIR)$(OSNAME).bin -ffreestanding -O2 -nostdlib \
 	$(BUILD_DIR)boot.o $(BUILD_DIR)kernel.o -lgcc
 
 run:
