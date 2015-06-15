@@ -3,6 +3,9 @@
 #endif
 #include <stddef.h>
 #include <stdint.h>
+
+// String utilities
+#include "../utils/string.h"
  
 /* Check if the compiler thinks if we are targeting the wrong operating system. */
 #if defined(__linux__)
@@ -45,14 +48,6 @@ uint16_t make_vgaentry(char c, uint8_t color)
 	uint16_t c16 = c;
 	uint16_t color16 = color;
 	return c16 | color16 << 8;
-}
-
-size_t strlen(const char* str)
-{
-	size_t ret = 0;
-	while (str[ret] != 0)
-		ret++;
-	return ret;
 }
 
 static const size_t VGA_WIDTH = 80;
