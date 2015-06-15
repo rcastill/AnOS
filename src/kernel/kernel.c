@@ -62,7 +62,7 @@ size_t terminal_row;
 size_t terminal_column;
 uint8_t terminal_color;
 uint16_t* terminal_buffer;
- 
+
 void terminal_initialize()
 {
 	terminal_row = 0;
@@ -89,7 +89,8 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 	terminal_buffer[index] = make_vgaentry(c, color);
 }
  
-void terminal_putchar(char c) {
+void terminal_putchar(char c)
+{
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 	
 	if (++terminal_column == VGA_WIDTH) {
@@ -100,10 +101,11 @@ void terminal_putchar(char c) {
 		}
 	}
 }
- 
+
 void terminal_writestring(const char* data)
 {
 	size_t datalen = strlen(data);
+
 	for (size_t i = 0; i < datalen; i++)
 		terminal_putchar(data[i]);
 }
@@ -111,10 +113,11 @@ void terminal_writestring(const char* data)
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kmain. */
 #endif
-void kmain() {
+void kmain()
+{
 	/* Initialize terminal interface */
 	terminal_initialize();
- 
+
 	/* Since there is no support for newlines in terminal_putchar
          * yet, '\n' will produce some VGA specific character instead.
          * This is normal.
